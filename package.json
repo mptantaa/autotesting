@@ -1,0 +1,14 @@
+{
+  "name": "autotesting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev-1_1": "node src/lab1-1.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^4.20.0"
+  }
+}
