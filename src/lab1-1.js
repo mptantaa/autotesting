@@ -30,7 +30,24 @@ async function lambdaTest() {
     }
 
     await driver.findElement(By.id('sampletodotext')).sendKeys("New item", Key.RETURN);
-    await driver.findElement(By.xpath("//*[contains(text(),'1 of 6 remaining')]"));
+    
+    console.log('Проверки нового добавленного элемента');
+    let newItemIndex = inputBoxes.length + 1;
+    let newItem = await driver.findElement(By.xpath(`//li[${newItemIndex}]`));
+    let newCheckbox = await newItem.findElement(By.xpath("./input"));
+    let newItemClass = await newItem.findElement(By.xpath("./span")).getAttribute('class');
+
+    assert.ok(!newItemClass.includes('done-true'), "Новый элемент уже зачеркнут");
+    console.log('Новый элемент не зачеркнут');
+
+    console.log(`Клик на чекбокс нового элемента`);
+    await newCheckbox.click();
+
+    newItemClass = await newItem.findElement(By.xpath("./span")).getAttribute('class');
+    assert.ok(newItemClass.includes('done-true'), "Новый элемент не зачеркнут после клика");
+
+    const newItemRemainingText = await driver.findElement(By.xpath(`//*[text()='0 of 6 remaining']`)).getText();
+    console.log(`Статус после клика на новый элемент ${newItemRemainingText}`);
   } catch (error) {
     console.error('Ошибка:', error);
     driver.takeScreenshot().then(function(image) {
