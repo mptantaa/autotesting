@@ -2,7 +2,7 @@ const { Builder, By, Key } = require('selenium-webdriver');
 const assert = require('assert');
 
 async function lambdaTest() {
-  const driver = await new Builder().forBrowser('firefox').build();
+  const driver = await new Builder().forBrowser('chrome').build();
 
   try {
     await driver.get('https://lambdatest.github.io/sample-todo-app/');
@@ -36,6 +36,7 @@ async function lambdaTest() {
     let newItem = await driver.findElement(By.xpath(`//li[${newItemIndex}]`));
     let newCheckbox = await newItem.findElement(By.xpath("./input"));
     let newItemClass = await newItem.findElement(By.xpath("./span")).getAttribute('class');
+    console.log(newItemClass)
 
     assert.ok(!newItemClass.includes('done-true'), "Новый элемент уже зачеркнут");
     console.log('Новый элемент не зачеркнут');

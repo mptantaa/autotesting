@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-1_1": "node src/lab1-1.js"
+    "test-1_1": "node src/lab1-1/lab1-1.js",
+    "test-1_2": "npx mocha src/lab1-2/tests/LambdaTest.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mocha": "^10.4.0",
     "selenium-webdriver": "^4.20.0"
   }
 }
