@@ -6,7 +6,8 @@
   "scripts": {
     "test-1_1": "node src/lab1-1/lab1-1.js",
     "test-1_2": "npx mocha src/lab1-2/tests/LambdaTest.js",
-    "test-2": "npx mocha src/lab2/tests/MospolytechTest.js"
+    "test-2": "npx mocha src/lab2/tests/MospolytechTest.js",
+    "test-3": "npx mocha src/lab3/tests/YandexMarketTest.js"
   },
   "author": "",
   "license": "ISC",
