@@ -36,6 +36,20 @@ class MospolytechPage extends BasePage {
     const scheduleElement = await this.waitForElement(By.css('.schedule-week'));
     return scheduleElement !== null;
   }
+
+  async verifyTimetableColored() {
+    const goToTodayButton = await this.waitForElement(By.className('goToToday'));
+    await this.clickElement(goToTodayButton);
+    const parentElements = await this.driver.findElements(By.className("schedule-day_today"));
+    const data = await Promise.all(parentElements.map(async (element) => {
+        const title = await element.findElement(By.className("schedule-day__title")).getText();
+        return title;
+    }));
+    const weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+    const now = new Date();
+    const weekdayIndex = now.getDay() - 1;
+    return weekdays[weekdayIndex] === data[0];    
+  }
 }
 
 module.exports = MospolytechPage;

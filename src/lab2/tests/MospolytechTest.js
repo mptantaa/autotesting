@@ -52,4 +52,8 @@ describe('Mospolytech расписание тест', function () {
     assert.strictEqual(isTimetableOpened, true, "Расписание открылось некорректно");
   });
 
+  it('проверка выделения текущего дня недели', async function () {
+    const isTimetableColor = await page.verifyTimetableColored();
+    assert.strictEqual(isTimetableColor, true, "Текущий день выделяется некорректно");
+  });
 });
